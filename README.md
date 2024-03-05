@@ -5,7 +5,7 @@
 python version = 3.12.2
 
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Run Streamlit App
