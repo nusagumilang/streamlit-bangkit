@@ -33,23 +33,8 @@ day = pd.read_csv("day_cleaned.csv")
 hour = pd.read_csv("hour_cleaned.csv")
 
 # Mengubah tipe data
-day['season'] = day['season'].astype(object)
-day['yr'] = day['yr'].astype(object)
-day['mnth'] = day['mnth'].astype(object)
-day['holiday'] = day['holiday'].astype(object)
-day['weekday'] = day['weekday'].astype(object)
-day['workingday'] = day['workingday'].astype(object)
-day['weathersit'] = day['weathersit'].astype(object)
 day['dteday'] = pd.to_datetime(day['dteday'])
 
-hour['season'] = hour['season'].astype(object)
-hour['yr'] = hour['yr'].astype(object)
-hour['mnth'] = hour['mnth'].astype(object)
-hour['holiday'] = hour['holiday'].astype(object)
-hour['weekday'] = hour['weekday'].astype(object)
-hour['workingday'] = hour['workingday'].astype(object)
-hour['weathersit'] = hour['weathersit'].astype(object)
-hour['hr'] = hour['hr'].astype(object)
 hour['dteday'] = pd.to_datetime(hour['dteday'])
 
 # Filter data
@@ -123,6 +108,15 @@ with tab_static:
                   ylabel='Rata-Rata Jumlah Penyewaan Sepeda',
                   title='Grafik Rata-Rata Jumlah Penyewaan Sepeda Berdasarkan Musim')
     st.pyplot(fig_musim)
+
+    # Plot tahun
+    st.subheader("Jumlah Penyewa Sepeda Berdasarkan Tahun")
+    fig_tahun, ax_tahun = plt.subplots(figsize=(16, 8))
+    sns.barplot(data = grouped_year, x = grouped_year.index, y = 'cnt', order = grouped_year.index)
+    ax_tahun.set(xlabel='Tahun',
+                  ylabel='Rata-Rata Jumlah Penyewaan Sepeda',
+                  title='Grafik Rata-Rata Jumlah Penyewaan Sepeda Berdasarkan Tahun')
+    st.pyplot(fig_tahun)
 
     # Plot hour
     st.subheader("Jumlah Penyewa Sepeda Berdasarkan Jam")
